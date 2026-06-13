@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bússola FCTE - Seu guia nas engenharias</title>
+    <meta name="description" content="A Bússola FCTE usa interesses e estilos de aprendizagem para ajudar calouros a explorar as engenharias.">
+    <link rel="icon" href="data:,">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="src/css/main.css">
+</head>
+<body>
+
+<!-- TopNavBar -->
+<header class="navbar">
+    <nav class="container nav-container">
+        <div class="logo-container" style="display: flex; align-items: center; gap: 16px;">
+            <div class="logo">Bússola FCTE</div>
+            <div style="height: 32px; width: 1px; background-color: var(--outline-variant); opacity: 0.5;"></div>
+            <img src="assets/images/logo.jpg" alt="Eight Logo" style="height: 32px; object-fit: contain;">
+        </div>
+        
+        <div class="nav-links">
+            <a href="#" class="nav-link active title-lg">Cursos</a>
+            <a href="#formulas" class="nav-link title-lg">Fórmulas</a>
+            <a href="#sobre" class="nav-link title-lg">Sobre</a>
+        </div>
+        
+        <div class="nav-actions">
+            <a href="quiz.html" class="btn btn-primary title-lg" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Começar</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="section hero animate-on-scroll">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1 class="display-lg hero-title">
+                    Entre na FCTE com mais clareza sobre <span class="text-primary">seus caminhos.</span>
+                </h1>
+                <p class="body-lg hero-desc">
+                    A Bússola FCTE usa interesses, estilos de aprendizagem e uma função de afinidade inspirada em Cálculo I para ajudar calouros a explorar as engenharias antes de escolher um rumo.
+                </p>
+                <div class="hero-actions" style="margin-bottom: 32px;">
+                    <a href="quiz.html" class="btn btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                        <span class="material-symbols-outlined">explore</span>
+                        Começar diagnóstico
+                    </a>
+                    <a href="#cursos" class="btn btn-secondary">
+                        Ver cursos
+                    </a>
+                </div>
+                
+                <div class="professor-highlight" style="display: flex; align-items: center; gap: 16px; justify-content: center; background: white; padding: 16px 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: inline-flex;">
+                    <div style="text-align: left;">
+                        <span class="caption text-primary" style="display: block; margin-bottom: 4px;">Projeto integrante</span>
+                        <span class="body-md font-bold text-on-surface">Metodologia do Professor</span>
+                    </div>
+                    <img src="assets/images/logo.jpg" alt="Eight Logo" style="height: 48px; object-fit: contain; border-left: 1px solid var(--surface-variant); padding-left: 16px;">
+                </div>
+            </div>
+            
+            <div class="hero-image-wrapper">
+                <div class="hero-image-bg"></div>
+                <img src="assets/images/hero-image.png" alt="Ilustração Hero Acadêmica" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Por que a Bússola Section -->
+    <section class="section context-section animate-on-scroll">
+        <div class="container text-center context-content">
+            <span class="caption text-primary">Contexto Acadêmico</span>
+            <h2 class="headline-lg">Por que a Bússola?</h2>
+            <p class="body-lg text-on-surface-variant">
+                Muitos calouros chegam à FCTE sem entender bem as diferenças entre as engenharias, os projetos disponíveis e os caminhos profissionais possíveis. A Bússola transforma essa incerteza em exploração guiada, sem decidir pelo aluno.
+            </p>
+        </div>
+    </section>
+
+    <!-- Como Funciona Section -->
+    <section class="section how-it-works animate-on-scroll">
+        <div class="container">
+            <div class="text-center">
+                <span class="caption text-primary">Metodologia</span>
+                <h2 class="headline-lg">Como funciona?</h2>
+            </div>
+            
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-icon-wrap step-icon-1">
+                        <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">quiz</span>
+                    </div>
+                    <h3 class="title-lg">Responda perguntas rápidas</h3>
+                    <p class="body-md text-on-surface-variant" style="margin-top: 12px;">
+                        Um questionário gamificado para entender seus interesses e estilos de aprendizagem.
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-icon-wrap step-icon-2">
+                        <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">analytics</span>
+                    </div>
+                    <h3 class="title-lg">Veja sua afinidade</h3>
+                    <p class="body-md text-on-surface-variant" style="margin-top: 12px;">
+                        Nossa função de afinidade calcula a proximidade entre seu perfil e os perfis técnicos da FCTE.
+                    </p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-icon-wrap step-icon-3">
+                        <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">explore</span>
+                    </div>
+                    <h3 class="title-lg">Exploração Guiada</h3>
+                    <p class="body-md text-on-surface-variant" style="margin-top: 12px;">
+                        Receba recomendações de laboratórios e projetos alinhados aos caminhos possíveis.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sua Bússola em Ação Section -->
+    <section class="section affinity-section animate-on-scroll">
+        <div class="container affinity-grid">
+            <div>
+                <span class="caption text-secondary">Visualização</span>
+                <h2 class="headline-lg" style="margin: 8px 0 24px;">Sua Bússola em Ação</h2>
+                <p class="body-lg text-on-surface-variant">
+                    Você demonstrou interesse em lógica, criatividade e sistemas digitais. Explore também Eletrônica se gostar de hardware e automação.
+                </p>
+                
+                <div class="check-list">
+                    <div class="check-item">
+                        <span class="material-symbols-outlined text-primary">check_circle</span>
+                        <span class="body-md">Relatório detalhado de interesses</span>
+                    </div>
+                    <div class="check-item">
+                        <span class="material-symbols-outlined text-primary">check_circle</span>
+                        <span class="body-md">Sugestão de projetos de extensão (PET, Equipes)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="affinity-card">
+                <h4 class="title-lg" style="margin-bottom: 32px; display: flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-outlined text-primary">bar_chart</span>
+                    Seu Perfil de Afinidade
+                </h4>
+                
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span>Engenharia de Software</span>
+                        <span class="text-primary">84%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 84%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span>Engenharia Eletrônica</span>
+                        <span class="text-primary">76%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 76%; opacity: 0.8"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item" style="margin-bottom: 0;">
+                    <div class="progress-header">
+                        <span>Engenharia de Energia</span>
+                        <span class="text-primary">61%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 61%; opacity: 0.6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa dos Cursos -->
+    <section id="cursos" class="section courses-section animate-on-scroll">
+        <div class="container">
+            <div class="courses-header">
+                <div>
+                    <span class="caption text-tertiary">O Ecossistema</span>
+                    <h2 class="headline-lg" style="margin-top: 8px;">Mapa das Engenharias</h2>
+                </div>
+                <button class="btn" style="color: var(--primary);">
+                    Explorar todos <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+            
+            <div class="courses-grid">
+                <!-- Software -->
+                <div class="course-card">
+                    <div class="course-icon-wrap">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">terminal</span>
+                    </div>
+                    <span class="font-bold">Software</span>
+                </div>
+                
+                <!-- Eletrônica -->
+                <div class="course-card">
+                    <div class="course-icon-wrap">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">memory</span>
+                    </div>
+                    <span class="font-bold">Eletrônica</span>
+                </div>
+                
+                <!-- Energia -->
+                <div class="course-card">
+                    <div class="course-icon-wrap">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                    </div>
+                    <span class="font-bold">Energia</span>
+                </div>
+                
+                <!-- Aeroespacial -->
+                <div class="course-card">
+                    <div class="course-icon-wrap">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">flight</span>
+                    </div>
+                    <span class="font-bold">Aeroespacial</span>
+                </div>
+                
+                <!-- Automotiva -->
+                <div class="course-card">
+                    <div class="course-icon-wrap">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+                    </div>
+                    <span class="font-bold">Automotiva</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- A ciência por trás -->
+    <section class="section science-section animate-on-scroll">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 48px;">
+                <h2 class="headline-lg" style="margin-bottom: 24px;">A ciência por trás da sua bússola</h2>
+                <p class="body-lg" style="opacity: 0.8; max-width: 700px; margin: 0 auto;">
+                    Transformamos o seu perfil de ingresso em exploração técnica através de um modelo explicável.
+                </p>
+            </div>
+            
+            <div class="science-grid">
+                <!-- Step 1 -->
+                <div class="science-card">
+                    <div class="science-num">1</div>
+                    <h4 class="title-lg" style="margin-bottom: 16px;">Seu Perfil</h4>
+                    <p class="body-md" style="opacity: 0.8;">Suas respostas ao diagnóstico são processadas e transformadas em um perfil de interesse multidimensional.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="science-card">
+                    <div class="science-num">2</div>
+                    <h4 class="title-lg" style="margin-bottom: 16px;">Referência</h4>
+                    <p class="body-md" style="opacity: 0.8;">Cada uma das 5 engenharias da FCTE possui um perfil de referência técnica calibrado por especialistas.</p>
+                </div>
+                
+                <!-- Step 3 / Formula -->
+                <div class="science-card highlight">
+                    <div class="science-num">3</div>
+                    <h4 class="title-lg" style="margin-bottom: 8px;">Afinidade</h4>
+                    <div class="formula">A(d) = 100e<sup>-kd²</sup></div>
+                    <p class="caption text-on-surface-variant text-center" style="margin-bottom: 16px;">
+                        A função de afinidade transforma a diferença (d) entre o perfil do aluno e o curso em uma pontuação de 0 a 100.
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="material-symbols-outlined text-primary" style="font-size: 16px;">functions</span>
+                        <span class="caption text-primary font-bold">Modelo Explicável FCTE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Fórmulas -->
+    <section id="formulas" class="section formulas-detailed-section animate-on-scroll" style="background-color: var(--surface-container-low);">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 48px;">
+                <span class="caption text-primary">Fundamentação Matemática</span>
+                <h2 class="headline-lg" style="margin-top: 8px; margin-bottom: 24px;">O Algoritmo de Afinidade</h2>
+                <div style="background-color: var(--primary-container); color: var(--on-primary-container); padding: 24px; border-radius: 16px; max-width: 800px; margin: 0 auto; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                    <p class="body-lg font-bold" style="margin-bottom: 8px;">
+                        Desenvolvido nas aulas de Cálculo I com o Professor Ronni Amorim
+                    </p>
+                    <p class="body-md">
+                        Este algoritmo foi criado com um propósito especial: utilizar <strong>exclusivamente</strong> os conceitos matemáticos que aprendemos durante o semestre de Cálculo I. A beleza deste modelo está na sua simplicidade: usando coisas básicas como limites, funções exponenciais, a regra da cadeia e derivadas como taxa de variação, conseguimos montar um sistema completo de recomendação!
+                    </p>
+                </div>
+            </div>
+
+            <div class="formulas-grid" style="display: grid; gap: 32px; max-width: 800px; margin: 0 auto;">
+                
+                <!-- Resumo Tecnico -->
+                <div class="formula-card" style="background: white; padding: 32px; border-radius: 16px; border: 1px solid var(--outline-variant); box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 class="title-lg text-primary" style="margin-bottom: 16px;">1. A Função de Afinidade</h3>
+                    <p class="body-md text-on-surface-variant" style="margin-bottom: 16px;">
+                        Para calcular o quanto um aluno combina com um curso, usamos a fórmula da distância entre dois pontos junto com uma função exponencial. A ideia é: quanto maior a "distância" entre o que o aluno gosta e o que o curso exige, menor a afinidade. É igualzinho ao decaimento exponencial que vemos nas primeiras provas de cálculo!
+                    </p>
+                    <div class="math-display" style="font-size: 1.5rem; text-align: center; margin: 24px 0; overflow-x: auto;">
+                        $$ A_c(\vec{x}) = 100 \cdot e^{-k \sum_{i=1}^{n} (x_i - p_{ci})^2} $$
+                    </div>
+                    <ul class="body-md text-on-surface-variant" style="list-style: none; padding: 0;">
+                        <li><strong>\( \vec{x} \)</strong> : Notas do aluno no teste de interesses</li>
+                        <li><strong>\( \vec{p_c} \)</strong> : Perfil do curso (notas ideais esperadas)</li>
+                        <li><strong>\( k \)</strong> : Número fixo que ajusta a descida da curva (ex: 0.03)</li>
+                    </ul>
+                </div>
+
+                <!-- Sensibilidade -->
+                <div class="formula-card" style="background: white; padding: 32px; border-radius: 16px; border: 1px solid var(--outline-variant); box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 class="title-lg text-primary" style="margin-bottom: 16px;">2. Taxa de Variação (Usando Derivadas de Cálculo I)</h3>
+                    <p class="body-md text-on-surface-variant" style="margin-bottom: 16px;">
+                        Espera, derivadas parciais não são de Cálculo II? Sim! Mas nós demos um jeito: para saber qual matéria pesou mais no resultado, nós <strong>tratamos todas as outras notas como números constantes</strong>. Assim, a afinidade vira uma função de uma única variável \( x \) (por exemplo, só a nota de programação). Usando a velha Regra da Cadeia, a derivada fica:
+                    </p>
+                    <div class="math-display" style="font-size: 1.5rem; text-align: center; margin: 24px 0; overflow-x: auto;">
+                        $$ \frac{d A_c}{dx} = -2k(x - p_c) \cdot A_c(x) $$
+                    </div>
+                    <p class="body-md text-on-surface-variant">
+                        Essa derivada nos dá a Taxa de Variação instantânea! Com ela, sabemos matematicamente qual habilidade está puxando a nota do aluno pra cima ou pra baixo, permitindo que a bússola dê conselhos baseados em Cálculo I puro: <em>"Sua nota de programação foi o fator que mais alavancou sua afinidade com Engenharia de Software!"</em>
+                    </p>
+                </div>
+
+                <!-- Exemplo Passo a Passo -->
+                <div class="formula-card" style="background: white; padding: 32px; border-radius: 16px; border: 1px solid var(--outline-variant); box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 class="title-lg text-primary" style="margin-bottom: 16px;">3. Exemplo Prático</h3>
+                    <p class="body-md text-on-surface-variant">Imagine um cenário simples com apenas dois interesses: \( x_1 = \text{programação} \) e \( x_2 = \text{sistemas físicos} \):</p>
+                    <div class="math-display" style="text-align: center; margin: 16px 0; font-size: 1.1rem;">
+                        $$ \vec{x} = (8, 5) \quad \text{(Perfil do Estudante)} $$
+                        $$ \vec{p}_{\text{Software}} = (10, 4) \quad \text{(Perfil Eng. Software)} $$
+                    </div>
+                    <p class="body-md text-on-surface-variant">Distância Euclidiana ao Quadrado:</p>
+                    <div class="math-display" style="text-align: center; margin: 16px 0; font-size: 1.1rem;">
+                        $$ d^2 = (8 - 10)^2 + (5 - 4)^2 = 4 + 1 = 5 $$
+                    </div>
+                    <p class="body-md text-on-surface-variant">Aplicando a afinidade com a constante \( k = 0.03 \):</p>
+                    <div class="math-display" style="text-align: center; margin: 16px 0; font-size: 1.1rem;">
+                        $$ A_{\text{Software}}(\vec{x}) = 100 \cdot e^{-0.03 \cdot 5} = 100 \cdot e^{-0.15} \approx 86.1\% $$
+                    </div>
+                </div>
+
+                <!-- Vantagens -->
+                <div class="formula-card" style="background: white; padding: 32px; border-radius: 16px; border: 1px solid var(--outline-variant); box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 class="title-lg text-primary" style="margin-bottom: 16px;">4. Vantagens e Ranking Final</h3>
+                    <p class="body-md text-on-surface-variant" style="margin-bottom: 16px;">
+                        Depois de calcular a afinidade com cada curso, o sistema só precisa fazer uma lista, do maior para o menor:
+                    </p>
+                    <div class="math-display" style="text-align: center; margin: 16px 0; font-size: 1.1rem;">
+                        $$ \text{Ranking} = \operatorname{sort} \left( A_{\text{Software}}, A_{\text{Eletrônica}}, A_{\text{Energia}}, \dots \right) $$
+                    </div>
+                    <ul class="body-md text-on-surface-variant" style="padding-left: 20px; line-height: 1.8;">
+                        <li><strong>É transparente:</strong> Qualquer calouro que preste atenção nas aulas de Cálculo I consegue entender.</li>
+                        <li><strong>É seguro:</strong> Não coleta dados pessoais nem histórico do aluno.</li>
+                        <li><strong>É independente:</strong> Dá pra rodar tudo direto no celular, sem precisar de banco de dados pesados!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre o Projeto -->
+    <section id="sobre" class="section about-section animate-on-scroll" style="background-color: var(--surface); padding-top: 96px; padding-bottom: 96px;">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 48px;">
+                <span class="caption text-primary">Nossa Inspiração</span>
+                <h2 class="headline-lg" style="margin-top: 8px;">Sobre o Projeto Eight</h2>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; max-width: 900px; margin: 0 auto;">
+                <div style="background: white; padding: 48px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 32px; border: 1px solid var(--outline-variant);">
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center;">
+                        <img src="assets/images/fragelli.webp" alt="Professor Ricardo Fragelli" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 6px solid var(--primary-container); box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+                        <div>
+                            <h3 class="display-lg text-primary" style="font-size: 28px; line-height: 36px;">Prof. Ricardo Fragelli</h3>
+                            <p class="title-lg text-on-surface-variant">Criador do Método Eight • UnB</p>
+                        </div>
+                    </div>
+                    
+                    <div style="height: 1px; width: 100%; background-color: var(--surface-variant);"></div>
+
+                    <div class="body-lg text-on-surface-variant" style="line-height: 1.8; text-align: justify;">
+                        <p style="margin-bottom: 24px;">
+                            O <strong>Eight</strong> é um percurso de aprendizagem inovador criado pelo professor de engenharia Ricardo Fragelli, da Universidade de Brasília (UnB). Reconhecido nacionalmente (vencedor do Prêmio Top Educacional), o método transforma a sala de aula ao substituir as tradicionais aulas expositivas por <strong>metodologias ativas</strong>.
+                        </p>
+                        <p style="margin-bottom: 24px;">
+                            No Método Eight, os alunos mergulham em projetos práticos de intervenção, atividades comunitárias, visitas técnicas e até na criação de divertidos <em>talk shows</em>. O grande objetivo é despertar o protagonismo do estudante, estimular a criatividade e reacender a paixão pelo aprendizado colaborativo.
+                        </p>
+                        <p style="margin-bottom: 24px;">
+                            O nome <strong>"Eight"</strong> vem do grande desafio final da disciplina: uma apresentação cronometrada de exatos <strong>8 minutos</strong>. Nesse momento decisivo, os alunos precisam sintetizar todo o conhecimento adquirido no semestre e conectá-lo profundamente com suas próprias trajetórias de vida.
+                        </p>
+                        <p style="padding-left: 24px; border-left: 4px solid var(--primary); font-style: italic; color: var(--on-surface);">
+                            A <strong>Bússola FCTE</strong> nasceu diretamente inspirada nessa filosofia: colocar o aluno no centro e aplicar o conhecimento teórico e matemático em projetos que fazem a diferença na vida dos calouros de engenharia!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Final -->
+    <section class="section cta-section animate-on-scroll">
+        <div class="container cta-content">
+            <h2 class="display-lg" style="margin-bottom: 24px;">Pronto para encontrar seu norte?</h2>
+            <p class="body-md text-on-surface-variant" style="margin-bottom: 48px;">
+                Descubra os caminhos possíveis e inicie sua jornada de exploração guiada na FCTE.
+            </p>
+            <a href="quiz.html" class="btn btn-primary btn-cta" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                Descobrir minha bússola
+                <span class="material-symbols-outlined">explore</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="disclaimer">
+        <div class="container">
+            <p class="caption text-on-surface-variant">
+                Plano de Validação: Em fase de calibração de pesos com coordenadores, veteranos e estudantes dos cursos.
+            </p>
+        </div>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="headline-md font-bold">Bússola FCTE</div>
+            <p class="body-md text-on-surface-variant">Projeto acadêmico desenvolvido para Introdução à Engenharia - FCTE/UnB.</p>
+            <p class="caption text-primary" style="margin-top: 8px;">Projeto acadêmico para Introdução à Engenharia - FCTE/UnB</p>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <h4 class="font-bold title-lg">Links Úteis</h4>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacidade</a>
+                <a href="#" class="footer-link">Termos de Uso</a>
+                <a href="#" class="footer-link">Contato</a>
+            </div>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <h4 class="font-bold title-lg">Redes Sociais</h4>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Instagram</a>
+                <a href="#" class="footer-link">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        © 2026 Bússola FCTE - Projeto acadêmico FCTE/UnB.
+    </div>
+</footer>
+
+<script src="src/js/main.js"></script>
+</body>
+</html>

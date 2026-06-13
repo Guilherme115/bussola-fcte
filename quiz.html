@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bússola FCTE - Diagnóstico</title>
+    <link rel="icon" href="data:,">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/quiz.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="src/data/questions.js"></script>
+    <script src="src/data/courses.js"></script>
+</head>
+<body>
+
+    <div id="course-transition-overlay">
+        <div class="transition-bg-pattern"></div>
+        <div class="transition-content">
+            <span id="transition-icon" class="material-symbols-outlined" style="font-size: 100px; color: var(--secondary-container); animation: spinPulse 3s infinite linear;">bolt</span>
+            <h1 id="transition-text" style="color: var(--secondary-container); font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; letter-spacing: -0.05em; text-transform: uppercase; margin: 0; line-height: 1.1;">
+                Nome do Curso
+            </h1>
+        </div>
+    </div>
+
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn">
+            <span class="material-symbols-outlined">arrow_back</span>
+            <span>Voltar</span>
+        </a>
+        <div class="logo-center">
+            <div class="logo-icon">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 20px;">explore</span>
+            </div>
+            <span style="font-weight: 800; color: var(--on-surface); letter-spacing: -0.02em;">Bússola FCTE</span>
+        </div>
+        <div style="width: 80px;"></div>
+    </nav>
+
+    <main class="quiz-main">
+        <span class="material-symbols-outlined bg-icon" style="top: -100px; left: -100px;">explore</span>
+        <span class="material-symbols-outlined bg-icon" style="bottom: -100px; right: -100px;">arrow_forward</span>
+
+        <div class="quiz-card" style="animation: slideUp 0.6s ease-out;">
+            <div class="threejs-wrapper">
+                <div id="threejs-container" class="threejs-container"></div>
+            </div>
+
+            <!-- PBL Engine Container -->
+            <div id="pbl-container" style="width: 100%; display: flex; flex-direction: column; gap: 24px;">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Theory Modal -->
+            <div id="theory-modal" class="modal-backdrop" onclick="closeTheory()">
+                <div class="theory-modal" onclick="event.stopPropagation()">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h2 class="title-lg text-primary" style="font-weight: 800;">Manual de Estudos</h2>
+                        <button onclick="closeTheory()" style="background: none; border: none; cursor: pointer; color: var(--on-surface-variant);">
+                            <span class="material-symbols-outlined" style="font-size: 28px;">close</span>
+                        </button>
+                    </div>
+                    <div id="theory-content" style="color: var(--on-surface-variant); font-size: 1.05rem; line-height: 1.6; display: flex; flex-direction: column; gap: 16px;">
+                        <!-- Content -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-container" style="display: none; width: 100%; text-align: left; animation: slideUp 0.6s ease-out;">
+                <h2 style="font-size: 2rem; color: var(--primary); margin-bottom: 24px; text-align: center; font-weight: 800; letter-spacing: -0.02em;">Sua Afinidade</h2>
+                <div id="ranking-list" style="display: flex; flex-direction: column; gap: 16px;">
+                    <!-- Ranking items inserted via JS -->
+                </div>
+            </div>
+
+            <div style="margin-top: 16px; padding-top: 32px; border-top: 1px solid var(--surface-container-high); display: flex; flex-direction: column; align-items: center; gap: 16px;">
+                <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--on-surface); letter-spacing: -0.02em;">O Futuro é Agora</h3>
+                <img src="assets/images/unb.png" alt="UnB - O Futuro é Agora" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--surface-container-high);">
+            </div>
+        </div>
+
+        <!-- Painel de Resultados Premium "Explorar Curso" -->
+        
+        <!-- Painel de Resultados Premium Original -->
+        <div id="results-dashboard" style="display: none;">
+            <!-- Seção Hero / Banner Vencedor -->
+            <section class="mb-xl text-center" style="margin-bottom: 48px;">
+                <h1 class="display-lg hero-title" style="margin-bottom: 24px; font-size: clamp(2rem, 4vw, 3rem); text-align: center;">Sua bússola aponta para...</h1>
+                <div class="results-hero shadow-sm">
+                    <div class="results-hero-content">
+                        <div class="text-left" style="text-align: left;">
+                            <span class="inline-block bg-primary-fixed-dim/20 text-white px-sm py-1 rounded-full text-caption font-bold mb-xs uppercase tracking-wider" style="background: rgba(255,255,255,0.15); color: white; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 8px;">Curso Principal</span>
+                            <h2 id="top-course-name" class="font-headline-lg text-white" style="font-size: clamp(1.8rem, 3vw, 2.5rem); margin: 0; color: white; font-weight: 700;">Engenharia de Software</h2>
+                        </div>
+                        <div class="flex items-center gap-xs" style="display: flex; align-items: center; gap: 8px;">
+                            <div class="text-right" style="text-align: right;">
+                                <span id="top-course-percentage" class="block font-display-lg text-secondary-container" style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: var(--secondary-container); display: block; line-height: 1;">84%</span>
+                                <span class="text-caption font-bold text-white/80 uppercase" style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 700; text-transform: uppercase;">Compatibilidade</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="top-course-icon-container" class="absolute -right-12 -bottom-12 opacity-10" style="position: absolute; right: -48px; bottom: -48px; opacity: 0.1;">
+                        <span id="top-course-icon-bg" class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 200px; color: white;">code</span>
+                    </div>
+                    <!-- Custom Floating Illustration -->
+                    <img id="top-course-illustration" class="results-hero-illustration" src="" alt="Ilustração do Curso">
+                </div>
+                <p class="mt-md font-body-md text-on-surface-variant italic max-w-2xl mx-auto" style="margin-top: 16px; font-style: italic; color: var(--on-surface-variant); max-w: 600px; margin-left: auto; margin-right: auto;">
+                    "Este resultado não define seu curso. Ele indica caminhos que valem ser explorados."
+                </p>
+            </section>
+
+            <!-- Grid de Conteúdo Principal -->
+            <div class="results-grid">
+                <!-- Coluna Esquerda: Afinidades e Perfil -->
+                <div class="results-col-left" style="display: flex; flex-direction: column; gap: 32px;">
+                    <!-- Card de Afinidades -->
+                    <div class="dashboard-card">
+                        <h3 class="headline-md" style="margin-bottom: 24px; color: var(--on-surface); font-size: 1.5rem; font-weight: 700;">Afinidade por Curso</h3>
+                        <div id="affinity-bars-container" class="space-y-md" style="display: flex; flex-direction: column; gap: 16px;">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Direita: CTA explorar curso -->
+                <div class="results-col-right" style="display: flex; flex-direction: column; justify-content: center; gap: 32px;">
+                    
+                    <!-- Card de Análise de Perfil -->
+                    <div class="profile-desc-card">
+                        <h3 class="title-lg text-on-surface mb-sm" style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; color: var(--on-surface);">
+                            <span class="material-symbols-outlined text-primary" style="color: var(--primary);">psychology</span>
+                            Análise de Perfil
+                        </h3>
+                        <p id="profile-dynamic-text" class="body-md text-on-surface-variant" style="line-height: 1.6; color: var(--on-surface-variant);">
+                            <!-- Injected dynamically -->
+                        </p>
+                    </div>
+
+                    <div style="text-align: center; padding: 24px; background: var(--surface-container-lowest); border-radius: 16px; border: 1px solid var(--surface-container-high); box-shadow: 0px 4px 20px rgba(70, 72, 212, 0.05);">
+                        <p class="headline-md text-primary" style="color: var(--primary); font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; line-height: 1.4;">
+                            Quer ver como é a rotina no seu curso ganhador?
+                        </p>
+                        <button id="cta-primary-explore" onclick="showExploreCourse()" class="btn btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.15rem; padding: 14px 28px; width: 100%;">
+                            Explorar Curso
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                        <div style="margin-top: 24px;">
+                            <button class="link-btn rotate-hover" onclick="refazerDiagnostico()">
+                                <span class="material-symbols-outlined">refresh</span>
+                                Refazer diagnóstico
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção de Caminhos Recomendados -->
+            <section class="recommended-section" style="margin-top: 48px; text-align: left;">
+                <div class="recommended-header" style="margin-bottom: 24px;">
+                    <div>
+                        <h3 class="headline-md" style="font-size: 1.5rem; font-weight: 700; color: var(--on-surface);">Explorar mais cursos</h3>
+                        <p class="body-md text-on-surface-variant">Baseado no seu perfil, aqui estão outras áreas de destaque.</p>
+                    </div>
+                </div>
+                <div id="recommended-cards-container" class="recommended-grid" style="display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <!-- Dinamicamente injetado -->
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Painel Explorar Curso Premium -->
+        <div id="explore-course-dashboard" style="display: none;">
+            <!-- Hero Section -->
+            <section class="results-hero-section">
+                <div class="results-hero-bg">
+                    <img id="hero-image" src="" alt="Hero Image">
+                    <div class="overlay"></div>
+                </div>
+                <div class="results-hero-content">
+                    <div style="max-width: 600px;">
+                        <span class="inline-block bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold mb-4 uppercase" style="background: var(--secondary-container); color: var(--on-secondary-container); padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 700; margin-bottom: 12px; display: inline-block;">
+                            Graduação Presencial
+                        </span>
+                        <h1 id="hero-title" class="display-lg text-white" style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: white; margin-bottom: 8px; line-height: 1.1;">
+                            Nome do Curso
+                        </h1>
+                        <p class="body-lg text-white" style="font-size: 1.125rem; color: rgba(255,255,255,0.9);">Faculdade UnB Gama (FCTE)</p>
+                        <div id="hero-tags" style="display:flex; gap:8px; flex-wrap:wrap; margin-top: 8px;"></div>
+                    </div>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                        <a id="hero-link" href="#" target="_blank" class="start-btn" style="height: 48px; padding: 0 24px; font-size: 1rem;">
+                            <span class="material-symbols-outlined">school</span>
+                            Guia do Calouro
+                        </a>
+                        <button onclick="backToResults()" class="start-btn" style="height:48px; padding:0 20px; background:rgba(255,255,255,0.15); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.3); box-shadow:none;">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Facts Strip -->
+            <div id="quick-facts-strip" class="quick-facts-strip"></div>
+
+            <!-- Tab Navigation -->
+            <div class="course-tabs" id="course-tabs-nav">
+                <button class="tab-btn active" onclick="switchTab('overview')" data-tab="overview">
+                    <span class="material-symbols-outlined" style="font-size:18px;">auto_awesome</span> Visão Geral
+                </button>
+                <button class="tab-btn" onclick="switchTab('curriculum')" data-tab="curriculum">
+                    <span class="material-symbols-outlined" style="font-size:18px;">menu_book</span> Currículo
+                </button>
+                <button class="tab-btn" onclick="switchTab('career')" data-tab="career">
+                    <span class="material-symbols-outlined" style="font-size:18px;">trending_up</span> Carreira
+                </button>
+                <button class="tab-btn" onclick="switchTab('faq')" data-tab="faq">
+                    <span class="material-symbols-outlined" style="font-size:18px;">help</span> FAQ
+                </button>
+            </div>
+
+            <!-- Tab Content Wrapper: stable width, no reflow -->
+            <div class="tab-content-wrapper">
+
+            <!-- ══ TAB: VISÃO GERAL ══ -->
+            <div id="tab-overview" class="tab-panel active">
+                <div class="bento-grid">
+                    <!-- Main Col -->
+                    <div class="bento-col-main">
+                        <!-- O que você faz? -->
+                        <div class="bento-card">
+                            <h2 class="bento-card-title text-primary" style="color: var(--primary);">
+                                <span id="hero-icon" class="material-symbols-outlined">bolt</span>
+                                O que você faz?
+                            </h2>
+                            <div id="desc-text" class="body-lg text-on-surface-variant" style="line-height: 1.7;">
+                                ...
+                            </div>
+                        </div>
+
+                        <!-- Myth vs Truth -->
+                        <div class="bento-myth-grid">
+                            <div class="myth-box">
+                                <span class="material-symbols-outlined" style="color: #ba1a1a; margin-top: 4px;">cancel</span>
+                                <div>
+                                    <p style="font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: #ba1a1a;">Mito Comum</p>
+                                    <p id="myth-text" style="font-weight: 600; color: var(--on-surface);">...</p>
+                                </div>
+                            </div>
+                            <div class="truth-box">
+                                <span class="material-symbols-outlined" style="color: var(--primary); margin-top: 4px;">check_circle</span>
+                                <div>
+                                    <p style="font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; color: var(--primary);">A Realidade</p>
+                                    <p id="truth-text" style="font-weight: 600; color: var(--on-surface);">...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Competências (Skill Bars) -->
+                        <div class="bento-card">
+                            <h3 class="bento-card-title">
+                                <span class="material-symbols-outlined">equalizer</span>
+                                Perfil de Competências
+                            </h3>
+                            <div id="skill-bars" class="skill-bar-row"></div>
+                        </div>
+                    </div>
+
+                    <!-- Side Col -->
+                    <div class="bento-col-side">
+                        <!-- Market & Salary -->
+                        <div class="market-card">
+                            <span class="material-symbols-outlined" style="font-size: 40px; margin-bottom: 12px;">payments</span>
+                            <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 6px;">Mercado & Carreira</h3>
+                            <p style="opacity: 0.8; margin-bottom: 20px; font-size: 0.9rem;">Alta demanda e inovação constante.</p>
+                            <div class="market-salary-box">
+                                <p style="font-size: 11px; text-transform: uppercase; opacity: 0.8; margin-bottom: 4px;">Faixa Salarial Média</p>
+                                <p id="market-salary" style="font-size: 1.8rem; font-weight: 800;">...</p>
+                            </div>
+                            <div id="market-tags" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+                        </div>
+
+                        <!-- Dá Match? -->
+                        <div class="bento-card" style="background: var(--surface-container-high);">
+                            <h3 class="bento-card-title">Dá Match?</h3>
+                            <div id="match-points" style="display: flex; flex-direction: column; gap: 16px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ TAB: CURRÍCULO ══ -->
+            <div id="tab-curriculum" class="tab-panel">
+                <div style="display: grid; gap: 32px;">
+                    <!-- Grade Curricular -->
+                    <div class="bento-card">
+                        <h3 class="bento-card-title"><span class="material-symbols-outlined">book</span>Grade Curricular</h3>
+                        <div class="curriculum-grid">
+                            <div>
+                                <h4 style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--primary); letter-spacing: 0.1em; margin-bottom: 16px;">Base de Engenharia</h4>
+                                <ul id="base-disciplines" class="curriculum-list"></ul>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: #007da9; letter-spacing: 0.1em; margin-bottom: 16px;">Específicas do Curso</h4>
+                                <ul id="specific-disciplines" class="curriculum-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline do Curso -->
+                    <div class="bento-card">
+                        <h3 class="bento-card-title"><span class="material-symbols-outlined">timeline</span>Jornada Acadêmica</h3>
+                        <div id="course-timeline" class="timeline"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ TAB: CARREIRA ══ -->
+            <div id="tab-career" class="tab-panel">
+                <!-- Empregabilidade -->
+                <section id="employability-section" style="display: none;">
+                    <div class="employability-grid">
+                        <div id="employability-stats-container" style="display: flex; flex-direction: column; gap: 16px;"></div>
+                        <div class="bento-card" style="background: var(--surface-container-low); border: 1px solid var(--primary-container); display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                                    <span class="material-symbols-outlined" style="font-size: 28px; color: var(--primary);">work</span>
+                                    <h3 style="font-weight: 700; color: var(--on-surface); margin: 0;">Contexto FCTE & Mercado</h3>
+                                </div>
+                                <p id="employability-text" style="line-height: 1.6; margin-bottom: 24px; color: var(--on-surface-variant);"></p>
+                            </div>
+                            <div style="padding: 16px; background: var(--surface-container-lowest); border-radius: 12px; border-left: 4px solid var(--primary);">
+                                <p style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 0.05em; margin-bottom: 4px;">Fonte da Pesquisa</p>
+                                <p id="employability-source" style="font-size: 14px; font-weight: 600; color: var(--on-surface); margin: 0;"></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ecosystem Labs -->
+                <section style="margin-top: 32px;">
+                    <div style="margin-bottom: 24px;">
+                        <h2 style="font-size: 2rem; font-weight: 700; color: var(--on-surface); margin-bottom: 8px;">Ecossistema FCTE</h2>
+                        <p style="color: var(--on-surface-variant);">Aprenda na prática com grupos de pesquisa e laboratórios.</p>
+                    </div>
+                    <div id="labs-grid" class="ecosystem-grid"></div>
+                </section>
+
+                <!-- Mini Mission CTA -->
+                <section class="mission-section" style="margin-top: 32px;">
+                    <div style="position: absolute; top: -64px; right: -64px; width: 256px; height: 256px; background: rgba(70, 72, 212, 0.05); border-radius: 50%; pointer-events: none;"></div>
+                    <div style="flex: 1; position: relative; z-index: 10;">
+                        <div style="width: 48px; height: 48px; background: var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; margin-bottom: 16px;">
+                            <span id="mission-icon" class="material-symbols-outlined">rocket_launch</span>
+                        </div>
+                        <h2 id="mission-title" style="font-size: 2rem; font-weight: 700; color: var(--on-surface); margin-bottom: 16px;">Mini Missão</h2>
+                        <p id="mission-desc" style="line-height: 1.6; margin-bottom: 24px; color: var(--on-surface-variant);">...</p>
+                    </div>
+                    <div class="mission-widget">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--primary);">Status do Projeto</span>
+                            <span style="font-size: 11px; font-weight: 700; color: var(--primary);">Ativo</span>
+                        </div>
+                        <div style="height: 12px; background: var(--surface-container); border-radius: 9999px; margin-bottom: 24px; overflow: hidden;">
+                            <div style="height: 100%; width: 65%; background: var(--primary); border-radius: 9999px;"></div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div style="background: var(--surface-container); padding: 12px; border-radius: 8px;">
+                                <p id="stat-1-title" style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--outline); margin-bottom: 4px;">...</p>
+                                <p id="stat-1-val" style="font-size: 1.25rem; font-weight: 800; color: var(--primary);">...</p>
+                            </div>
+                            <div style="background: var(--surface-container); padding: 12px; border-radius: 8px;">
+                                <p id="stat-2-title" style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--outline); margin-bottom: 4px;">...</p>
+                                <p id="stat-2-val" style="font-size: 1.25rem; font-weight: 800; color: var(--primary);">...</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- ══ TAB: FAQ ══ -->
+            <div id="tab-faq" class="tab-panel">
+                <div class="bento-card">
+                    <h3 class="bento-card-title"><span class="material-symbols-outlined">quiz</span>Perguntas Frequentes</h3>
+                    <div id="faq-accordion"></div>
+                </div>
+            </div>
+
+
+
+
+
+            </div><!-- end .tab-content-wrapper -->
+
+            <!-- Cta to reset -->
+            <div style="text-align: center; margin-top: 48px;">
+                <button class="link-btn rotate-hover" onclick="refazerDiagnostico()">
+                    <span class="material-symbols-outlined">refresh</span>
+                    Refazer diagnóstico
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-text">
+        © 2026 Bússola FCTE - Projeto acadêmico FCTE/UnB
+    </footer>
+
+    <script src="src/js/quiz.js"></script>
+</body>
+</html>
